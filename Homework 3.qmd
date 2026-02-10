@@ -7,18 +7,19 @@ editor: visual
 
 ## Problem 1
 
-A regression analysis relating test scores (Y) to training hours (X) produced the
-following fitted equation: $\hat{y}= 25 − 0.5x$.
+A regression analysis relating test scores (Y) to training hours (X) produced the following fitted equation: $\hat{y}= 25 − 0.5x$.
 
 ### a.
 
-What is the fitted value of the response variable corresponding to $ x = 7$?
+What is the fitted value of the response variable corresponding to \$ x = 7\$?
 
 **R/**\
+
 ```{r}
 y = 25 - 0.5 * 7
 y
 ```
+
 The fitted value when x = 7 is y = 21.5
 
 ### b.
@@ -27,11 +28,13 @@ What is the residual corresponding to the data point with 𝑥 = 3 and 𝑦 = 30
 Is the point above or below the line? Why?
 
 **R/**\
+
 ```{r}
 y_hat = 25 - 0.5 * 3
 y_hat
 30-y_hat
 ```
+
 The residual is 6.5, it is above the line due to the positive error, because after evaluating the fitted equation with 3, the $\hat{y}$ is lower than the y corresponding to the data point.
 
 ### c.
@@ -39,9 +42,11 @@ The residual is 6.5, it is above the line due to the positive error, because aft
 If x increases 3 units, how does $\hat{y}$ change?
 
 **R/**\
+
 ```{r}
 -0.5 * 3
 ```
+
 It x increase 3 units, the estimated value y will decrease 1.5 units.
 
 ### d.
@@ -54,10 +59,10 @@ Not necessarily, this is because there is a probability associated to each point
 
 ### e.
 
-The error sums of squares (SSE) for this model were found to be 7. If there
-were n = 16 observations, provide the best estimate for $\sigma^2$. 
+The error sums of squares (SSE) for this model were found to be 7. If there were n = 16 observations, provide the best estimate for $\sigma^2$.
 
 **R/**\
+
 ```{r}
 SSE = 7
 n = 16
@@ -65,13 +70,64 @@ p = 2 #2 parameters estimated in the model b0 and b1
 s2 = SSE / (n - 2)
 s2
 ```
+
 The best estimate is $\sigma^2 = 0.5$.
 
 ## Problem 2
 
+The dataset "Healthy Breakfast" contains, among other variables, the Consumer Reports ratings of 77 cereals and the number of grams of sugar contained in each serving. Considering "Sugars" as the explanatory variable and "Rating" as the response variable generated the following fitted regression equation: $$ \widehat{rating} = 59.3 - 2.4 * sugars$$ The "Analysis of variance" partial portion of the R output is shown below
 
+### a.
 
+Find the missing values
 
+| Source | DF | SS | MS | F | P |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| **Regression** | [1]{.underline} | 8654.7 | [8654.7]{.underline} | [102.35]{.underline} | [1.1537e-15]{.underline} |
+| **Error** | [75]{.underline} | [6342.1]{.underline} | [84.56]{.underline} |  |  |
+| **Total** | [76]{.underline} | 14996.8 |  |  |  |
 
+```{r}
+nt <- 77
+SSr <- 8654.7
+MSr <- 8654.7
+SST <- 14996.8
+dfr <- SSr / MSr
+dfr
+SSE <- SST - SSr
+SSE
+p <- dfr + 1
+p
+dfe <- nt-p
+dfe
+dfT <- dfe + dfr
+dfT
+MSE <- SSE / dfe
+MSE
+F_v <- MSr / MSE
+F_v
+P_v <- pf(F_v, dfr, dfe, lower.tail = F)
+P_v
+```
 
+### b.
 
+Find $R^2$ value and interpret that number.
+
+**R/**\
+```{r}
+R_sq <- SSr / SST
+R_sq
+```
+Based on our $R^2$, 57% of the variability of the data can be explained by the model.
+
+### c.
+
+What is the estimated value of $\sigma^2$.
+
+**R/**\
+```{r}
+s2 = SSE / (nt - p)
+s2
+```
+The best estimate is $\sigma^2 = 84.56$.
