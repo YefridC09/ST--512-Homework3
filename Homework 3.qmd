@@ -1,0 +1,77 @@
+---
+title: "Homework #3"
+author: "Yefrid Cordoba"
+format: html
+editor: visual
+---
+
+## Problem 1
+
+A regression analysis relating test scores (Y) to training hours (X) produced the
+following fitted equation: $\hat{y}= 25 − 0.5x$.
+
+### a.
+
+What is the fitted value of the response variable corresponding to $ x = 7$?
+
+**R/**\
+```{r}
+y = 25 - 0.5 * 7
+y
+```
+The fitted value when x = 7 is y = 21.5
+
+### b.
+
+What is the residual corresponding to the data point with 𝑥 = 3 and 𝑦 = 30?.\
+Is the point above or below the line? Why?
+
+**R/**\
+```{r}
+y_hat = 25 - 0.5 * 3
+y_hat
+30-y_hat
+```
+The residual is 6.5, it is above the line due to the positive error, because after evaluating the fitted equation with 3, the $\hat{y}$ is lower than the y corresponding to the data point.
+
+### c.
+
+If x increases 3 units, how does $\hat{y}$ change?
+
+**R/**\
+```{r}
+-0.5 * 3
+```
+It x increase 3 units, the estimated value y will decrease 1.5 units.
+
+### d.
+
+An additional test score is to be obtained for a new observation at 𝑥 = 6.\
+Would the test score for the new observation necessarily be 22? Explain.
+
+**R/**\
+Not necessarily, this is because there is a probability associated to each point on the regression that is assumed to be normal, to determine what is the range at which we can be sure about the true future value of y when x = 6, we would need to estimate the prediction interval.
+
+### e.
+
+The error sums of squares (SSE) for this model were found to be 7. If there
+were n = 16 observations, provide the best estimate for $\sigma^2$. 
+
+**R/**\
+```{r}
+SSE = 7
+n = 16
+p = 2 #2 parameters estimated in the model b0 and b1
+s2 = SSE / (n - 2)
+s2
+```
+The best estimate is $\sigma^2 = 0.5$.
+
+## Problem 2
+
+
+
+
+
+
+
