@@ -152,8 +152,63 @@ $$ \hat{\beta_0} = b_0 = 58.816$$
 $$ \hat{\beta_1} = b_1 = -1.867$$
 $$ s(b_1) = 0.346$$
 $$ MSE = 4.417$$
+$$\hat{y}= 58.816 − 1.867x$$
 ### a.
 
 Test the hypothesis that there is a linear relationship between the amount of time needed to run a 10-km race and the time to exhaustion on a treadmill.
 
 **R/**\
+```{r}
+bo <- 58.816
+b1 <- -1.867
+MSE <- 4.417
+sb1 <- 0.346
+tobs <- (b1 - 0) / sb1
+tobs < -qt(0.975, 18)
+```
+We have to test:$H_o : \beta_1 = 0$ against $H_a : \beta_1 \neq 0$
+
+Assuming an $\alpha = 0.05$, and knowing that $t_{obs} < -t_{(0.975, 18)}$ we reject the null hypothesis and conclude that the time of exhaustion on a treadmill has a linear relationship to the time needed to run a 10-km race.
+
+### b.
+
+Construct a 95% confidence interval for $\beta_1$.
+
+**R/**\
+```{r}
+Up <- b1 + qt(0.975, 18) *sb1
+Up
+Lo <- b1 - qt(0.975, 18) *sb1
+Lo
+```
+We are 95% confident that the estimated mean time to run a 10-km race decreases between 1.14 and 2.59 minutes for each additional minute that an athlete times on the treadmill.
+
+### c.
+
+Construct a 95% confidence interval for the estimated mean 10-km race
+when the treadmill time is 10 minutes. Given that $sd${ $\hat{y}_{x_h=10}$} $= 0.7342$
+
+**R/**\
+```{r}
+y_hat <- bo + b1 * 10
+y_hat
+sd10 <- 0.7342
+Up10 <- y_hat + sd10 * qt(0.975, 18)
+Up10
+Lo10 <- y_hat - sd10 * qt(0.975, 18)
+Lo10
+```
+We are 95% confident that the estimated mean time when the treadmill time is 10 min for a 10-km race is between 38.6 and 41.7 minutes.
+
+### d.
+
+Construct a 95% prediction interval for an athlete whose treadmill time is 10 minutes. 
+$sd(\hat{y}_{\text{pred}}) = \sqrt{mse + \left(sd\{\hat{y}_{x_h = 10}\}\right)^2} = 2.226$
+```{r}
+sdpred <- 2.226
+Upp <- y_hat + sdpred * qt(0.975, 18)
+Upp
+Lop <- y_hat - sdpred * qt(0.975, 18)
+Lop
+```
+We are 95% confident that the mean time when an athlete times 10 min on the treadmill will be between 35.5 and 44.8 min for a 10-km race.
