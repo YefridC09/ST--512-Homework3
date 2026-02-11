@@ -136,7 +136,7 @@ s2
 
 The estimated variance is $\sigma^2 = 84.56$.
 
-## d.
+### d.
 
 Test $H_o : \beta_1 = 0$ against $H_a : \beta_1 \neq 0$ using F - test
 
@@ -212,3 +212,37 @@ Lop <- y_hat - sdpred * qt(0.975, 18)
 Lop
 ```
 We are 95% confident that the mean time when an athlete times 10 min on the treadmill will be between 35.5 and 44.8 min for a 10-km race.
+
+## Problem 4
+
+The director of admissions of a small college selected 120 students at random from the new freshman class in a study to determine whether a student's grade point average (GPA) at the end of the freshman year (Y) can be predicted from the ACT test score (X). The results of the study follow. Assume that first-order regression model $Y_i = \beta_0 + \beta_1 * X_i + \epsilon_i$ is appropriate. **(Data is provided in the Moodle Page)**
+
+```{r}
+gpa_data<-read.table('Homework3 Data.txt', header=T)
+names(gpa_data)
+head(gpa_data)
+tail(gpa_data)
+attach(gpa_data)
+```
+### a. 
+
+Compute the mean and variance of ACT test score and GPA.
+
+**R/**\
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+gpa_data |>
+  summarise(across(
+    where(is.numeric),
+    list(mean = mean, var = var),
+    na.rm = TRUE
+  ))
+
+
+```
+```{r}
+cor(gpa_data$ACT, gpa_data$GPA, method = "pearson")
+```
+
