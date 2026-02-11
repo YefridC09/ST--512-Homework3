@@ -82,7 +82,7 @@ The dataset "Healthy Breakfast" contains, among other variables, the Consumer Re
 Find the missing values
 
 | Source | DF | SS | MS | F | P |
-|:--:|:--:|:--:|:--:|:--:|:--:|
+|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|
 | **Regression** | [1]{.underline} | 8654.7 | [8654.7]{.underline} | [102.35]{.underline} | [1.1537e-15]{.underline} |
 | **Error** | [75]{.underline} | [6342.1]{.underline} | [84.56]{.underline} |  |  |
 | **Total** | [76]{.underline} | 14996.8 |  |  |  |
@@ -115,10 +115,12 @@ P_v
 Find $R^2$ value and interpret that number.
 
 **R/**\
+
 ```{r}
 R_sq <- SSr / SST
 R_sq
 ```
+
 Based on our $R^2$, 57% of the variability of the data can be explained by the model.
 
 ### c.
@@ -126,8 +128,32 @@ Based on our $R^2$, 57% of the variability of the data can be explained by the m
 What is the estimated value of $\sigma^2$.
 
 **R/**\
+
 ```{r}
 s2 = SSE / (nt - p)
 s2
 ```
-The best estimate is $\sigma^2 = 84.56$.
+
+The estimated variance is $\sigma^2 = 84.56$.
+
+## d.
+
+Test $H_o : \beta_1 = 0$ against $H_a : \beta_1 \neq 0$ using F - test
+
+**R/**\
+Assuming a 5% level of significance, and given that the P-value (1.1537e-15)from the table is much lower than our level of significance, we reject the null hypothesis and have strong evidence to conclude that $\beta_1$ is different than 0.
+
+## Problem 3
+
+Athletes are constantly seeking measures of the degree of their cardiovascular fitness prior to a major race. Athletes want to know when their training is at a level that will produce a peak performance. One such measure of fitness is the time to exhaustion from running on a treadmill at a specified angle and speed. The important question is then “Does this measure of cardiovascular fitness translate into performance in a 10-km running race?” Twenty experienced distance runners who professed to be in top condition were evaluated on the treadmill and then had their times recorded in a 10-km race.
+
+You are provided with the following information
+$$ \hat{\beta_0} = b_0 = 58.816$$
+$$ \hat{\beta_1} = b_1 = -1.867$$
+$$ s(b_1) = 0.346$$
+$$ MSE = 4.417$$
+### a.
+
+Test the hypothesis that there is a linear relationship between the amount of time needed to run a 10-km race and the time to exhaustion on a treadmill.
+
+**R/**\
