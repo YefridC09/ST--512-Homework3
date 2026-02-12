@@ -355,3 +355,57 @@ predict(model, data, interval = 'prediction',
         level = 0.95, se.fit = TRUE)
 ```
 For students with an ACT score of 28, a 95% prediction interval for freshman year GPA is 1.959 to 4.443, meaning that under similar conditions about 95% of those students’ GPAs are expected to fall in this range.
+
+## Problem 5
+
+A medical study was conducted to study the relationship between infants’ systolic blood pressure and two explanatory variables, weight (kgm) and age (days). The portion of data for 25 infants are shown here.
+
+```{r}
+age <- c(3, 4, 5, 6, 3, 4, 5, 6, 3, 4, 5, 6, 3, 4, 5, 6, 3, 4, 5, 6, 3, 4, 5, 6, 6) 
+weight <- c(2.61, 2.67, 2.98, 3.98, 2.87, 3.41, 3.49, 4.03, 3.41, 2.81, 3.24, 3.75, 3.18, 3.13, 3.98, 4.55, 3.41, 3.35, 3.75, 3.83, 3.18, 3.52, 3.49, 3.81, 4.03) 
+systolic_BP <- c(80, 90, 96, 102, 81, 96, 99, 110, 88, 90, 100, 102, 86, 93, 101, 103, 86, 91, 100, 105, 84, 91, 95, 104, 107) 
+# Create a data frame 
+data <- data.frame(age, weight, systolic_BP)
+```
+
+### a.
+
+Write a first-order multiple regression model relating Systolic BP to Age and Weight.
+
+**R/**
+$$\widehat{Systolic BP} = \beta_0 + \beta_1 * Age + \beta_2 * Weight$$
+
+### b.
+
+Fit Multiple linear regression models to these data and obtain the estimated regression equation.
+
+**R/**
+```{r}
+MLRmodel <- lm(systolic_BP ~ age + weight, data)
+summary(MLRmodel)
+```
+The estimated multiple linear regression model is:
+
+$$\widehat{Systolic BP} = 57.2644 + 5.8041 * Age + 3.3162 * Weight$$
+
+### c.
+
+Obtain the estimated residual standard deviation.
+
+**R/**\
+The estimated residual standard error = estimated residual standard deviation.
+
+$$\sigma = \sqrt{MSE} = 2.454 $$
+
+### d.
+
+Provide an interpretation of $\hat{\beta_2}$, the coefficient of weight.
+
+**R/**\
+If the age of an infant is constant, for each additional kilogram of weight that an infant has, the mean systolic blood pressure will increase by 3.32.
+
+### e.
+
+Can the hypothesis of no overall predictive value of the model be rejected at the $\alpha = 0.01$ level?
+
+**R/**\
