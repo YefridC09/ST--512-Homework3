@@ -11,7 +11,7 @@ A regression analysis relating test scores (Y) to training hours (X) produced th
 
 ### a.
 
-What is the fitted value of the response variable corresponding to \$ x = 7\$?
+What is the fitted value of the response variable corresponding to $ x = 7$?
 
 **R/**\
 
@@ -147,17 +147,12 @@ Assuming a 5% level of significance, and given that the P-value (1.1537e-15)from
 
 Athletes are constantly seeking measures of the degree of their cardiovascular fitness prior to a major race. Athletes want to know when their training is at a level that will produce a peak performance. One such measure of fitness is the time to exhaustion from running on a treadmill at a specified angle and speed. The important question is then “Does this measure of cardiovascular fitness translate into performance in a 10-km running race?” Twenty experienced distance runners who professed to be in top condition were evaluated on the treadmill and then had their times recorded in a 10-km race.
 
-You are provided with the following information
-$$ \hat{\beta_0} = b_0 = 58.816$$
-$$ \hat{\beta_1} = b_1 = -1.867$$
-$$ s(b_1) = 0.346$$
-$$ MSE = 4.417$$
-$$\hat{y}= 58.816 − 1.867x$$
-### a.
+You are provided with the following information $$ \hat{\beta_0} = b_0 = 58.816$$ $$ \hat{\beta_1} = b_1 = -1.867$$ $$ s(b_1) = 0.346$$ $$ MSE = 4.417$$ $$\hat{y}= 58.816 − 1.867x$$ \### a.
 
 Test the hypothesis that there is a linear relationship between the amount of time needed to run a 10-km race and the time to exhaustion on a treadmill.
 
 **R/**\
+
 ```{r}
 bo <- 58.816
 b1 <- -1.867
@@ -166,6 +161,7 @@ sb1 <- 0.346
 tobs <- (b1 - 0) / sb1
 tobs < -qt(0.975, 18)
 ```
+
 We have to test:$H_o : \beta_1 = 0$ against $H_a : \beta_1 \neq 0$
 
 Assuming an $\alpha = 0.05$, and knowing that $t_{obs} < -t_{(0.975, 18)}$ we reject the null hypothesis and conclude that the time of exhaustion on a treadmill has a linear relationship to the time needed to run a 10-km race.
@@ -175,20 +171,22 @@ Assuming an $\alpha = 0.05$, and knowing that $t_{obs} < -t_{(0.975, 18)}$ we re
 Construct a 95% confidence interval for $\beta_1$.
 
 **R/**\
+
 ```{r}
 Up <- b1 + qt(0.975, 18) *sb1
 Up
 Lo <- b1 - qt(0.975, 18) *sb1
 Lo
 ```
+
 We are 95% confident that the estimated mean time to run a 10-km race decreases between 1.14 and 2.59 minutes for each additional minute that an athlete times on the treadmill.
 
 ### c.
 
-Construct a 95% confidence interval for the estimated mean 10-km race
-when the treadmill time is 10 minutes. Given that $sd${ $\hat{y}_{x_h=10}$} $= 0.7342$
+Construct a 95% confidence interval for the estimated mean 10-km race when the treadmill time is 10 minutes. Given that $sd${ $\hat{y}_{x_h=10}$} $= 0.7342$
 
 **R/**\
+
 ```{r}
 y_hat <- bo + b1 * 10
 y_hat
@@ -198,12 +196,13 @@ Up10
 Lo10 <- y_hat - sd10 * qt(0.975, 18)
 Lo10
 ```
+
 We are 95% confident that the estimated mean time when the treadmill time is 10 min for a 10-km race is between 38.6 and 41.7 minutes.
 
 ### d.
 
-Construct a 95% prediction interval for an athlete whose treadmill time is 10 minutes. 
-$sd(\hat{y}_{\text{pred}}) = \sqrt{mse + \left(sd\{\hat{y}_{x_h = 10}\}\right)^2} = 2.226$
+Construct a 95% prediction interval for an athlete whose treadmill time is 10 minutes. $sd(\hat{y}_{\text{pred}}) = \sqrt{mse + \left(sd\{\hat{y}_{x_h = 10}\}\right)^2} = 2.226$
+
 ```{r}
 sdpred <- 2.226
 Upp <- y_hat + sdpred * qt(0.975, 18)
@@ -211,6 +210,7 @@ Upp
 Lop <- y_hat - sdpred * qt(0.975, 18)
 Lop
 ```
+
 We are 95% confident that the mean time when an athlete times 10 min on the treadmill will be between 35.5 and 44.8 min for a 10-km race.
 
 ## Problem 4
@@ -224,11 +224,13 @@ head(gpa_data)
 tail(gpa_data)
 attach(gpa_data)
 ```
-### a. 
+
+### a.
 
 Compute the mean and variance of ACT test score and GPA.
 
 **R/**\
+
 ```{r}
 #| message: false
 #| warning: false
@@ -239,10 +241,117 @@ gpa_data |>
     list(mean = mean, var = var),
     na.rm = TRUE
   ))
-
-
 ```
+
+### b.
+
+Compute the correlation between ACT test score and GPA. Comment on the strength and direction of the linear relationship between the variables.
+
+**R/**
 ```{r}
 cor(gpa_data$ACT, gpa_data$GPA, method = "pearson")
 ```
+There is a positive correlation between ACT test score and GPA, that means that a higher test score is related to a higher GPA at the end of the  freshman year but this correlation is weak.
 
+### c.
+
+Construct a scatter plot. Is the relationship approximately linear?
+
+**R/**
+```{r}
+gpa_data |>
+  ggplot(aes(x = ACT, y = GPA)) +
+  labs(x = 'ACT test score',
+       y = 'GPA',
+       title = 'Scatterplot of ACT test score vs. GPA at the end of freshman year')+
+  theme_light() +
+  geom_point()
+```
+The relationship for ACT test score and GPA is weakly positive and linear.
+
+### d.
+
+Run a linear regression to predict GPA based on the ACT score. Give the regression equation.
+
+**R/**
+```{r}
+model <- lm(GPA ~ ACT, gpa_data)
+summary(model)
+```
+The regression equation for this model is:
+
+$$\widehat{GPA} = 2.11405 + 0.03883 * ACT_{testscore}$$
+
+### e.
+
+What is the point estimate of the change in the mean response when the entrance test score increases by one point? And increases by 4 points?
+
+**R/**\
+The estimated change in the mean GPA is 0.03883 points more when the ACT test score increases by one point
+```{r}
+0.03883*4
+```
+When the ACT test score increases by 4 points, it is estimated that the mean GPA at the end of the freshman year will be 0.15532 points higher.
+
+### f.
+
+Based on your answer in (e), predict the GPA of a student who scored 20 on the ACT.
+
+**R/**\
+```{r}
+GPA20 <- 2.11405 + 0.03883 * 20
+GPA20
+```
+The predicted mean GPA for a student who scored 20 on the ACT is 2.89.
+
+### g.
+
+Estimate $\sigma^2$ and $\sigma$
+
+**R/**\
+From the regression model we get $\sqrt{MSE} = 0.6231$ = standard error\
+$\sigma^2 = MSE$
+```{r}
+MSE <- 0.6231 ^2
+MSE
+```
+Estimates:
+
+$$\sigma^2 = 0.3883$$
+$$\sigma = 0.6231$$
+
+### h.
+
+Give a point estimate and 95% confidence interval for the slope and interpret each of these in words.
+
+```{r}
+confint(model, 'ACT', level = 0.95)
+```
+Point estimate = 0.03883\
+For each point increase in the ACT test score, it is estimated that the GPA will increase by 0.03883 points.
+
+We are 95% confident that the true change in the GPA for each ACT test point obtained by the students is between 0.0135 and 0.0641 more.
+
+### i.
+
+Obtain a 95% interval estimate of the mean GPA for students whose ACT test score is 28. Interpret your confidence interval.
+
+**R/**\
+```{r}
+data <- data.frame(ACT = 28)
+predict(model, data, interval = 'confidence', 
+        level = 0.95, se.fit = TRUE)
+```
+We are 95% confident that the true mean GPA value is between 3.061 and 3.341 when the ACT test score is 28.
+
+### j.
+
+Predict GPA using a 95% prediction interval for students whose ACT test score is 28.
+
+**R/**
+```{r}
+data <- data.frame(ACT = 28)
+predict(model, data, interval = 'prediction', 
+        level = 0.95, se.fit = TRUE)
+```
+For students with an ACT score of 28, a 95% prediction interval for freshman year GPA is 1.959 to 4.443, meaning that under similar conditions about 95% of those students’ GPAs are expected to fall in this range.
