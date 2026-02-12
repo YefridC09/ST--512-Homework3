@@ -343,7 +343,9 @@ Assuming a 5% level of significance, and given that the P-value (1.1537e-15)from
 <section id="problem-3" class="level2">
 <h2 class="anchored" data-anchor-id="problem-3">Problem 3</h2>
 <p>Athletes are constantly seeking measures of the degree of their cardiovascular fitness prior to a major race. Athletes want to know when their training is at a level that will produce a peak performance. One such measure of fitness is the time to exhaustion from running on a treadmill at a specified angle and speed. The important question is then “Does this measure of cardiovascular fitness translate into performance in a 10-km running race?” Twenty experienced distance runners who professed to be in top condition were evaluated on the treadmill and then had their times recorded in a 10-km race.</p>
-<p>You are provided with the following information <span class="math display">\[ \hat{\beta_0} = b_0 = 58.816\]</span> <span class="math display">\[ \hat{\beta_1} = b_1 = -1.867\]</span> <span class="math display">\[ s(b_1) = 0.346\]</span> <span class="math display">\[ MSE = 4.417\]</span> <span class="math display">\[\hat{y}= 58.816 − 1.867x\]</span> ### a.</p>
+<p>You are provided with the following information <span class="math display">\[ \hat{\beta_0} = b_0 = 58.816\]</span> <span class="math display">\[ \hat{\beta_1} = b_1 = -1.867\]</span> <span class="math display">\[ s(b_1) = 0.346\]</span> <span class="math display">\[ MSE = 4.417\]</span> <span class="math display">\[\hat{y}= 58.816 − 1.867x\]</span></p>
+<section id="a.-2" class="level3">
+<h3 class="anchored" data-anchor-id="a.-2">a.</h3>
 <p>Test the hypothesis that there is a linear relationship between the amount of time needed to run a 10-km race and the time to exhaustion on a treadmill.</p>
 <p><strong>R/</strong><br>
 </p>
@@ -360,6 +362,7 @@ Assuming a 5% level of significance, and given that the P-value (1.1537e-15)from
 </div>
 <p>We have to test:<span class="math inline">\(H_o : \beta_1 = 0\)</span> against <span class="math inline">\(H_a : \beta_1 \neq 0\)</span></p>
 <p>Assuming an <span class="math inline">\(\alpha = 0.05\)</span>, and knowing that <span class="math inline">\(t_{obs} &lt; -t_{(0.975, 18)}\)</span> we reject the null hypothesis and conclude that the time of exhaustion on a treadmill has a linear relationship to the time needed to run a 10-km race.</p>
+</section>
 <section id="b.-2" class="level3">
 <h3 class="anchored" data-anchor-id="b.-2">b.</h3>
 <p>Construct a 95% confidence interval for <span class="math inline">\(\beta_1\)</span>.</p>
@@ -454,8 +457,8 @@ Assuming a 5% level of significance, and given that the P-value (1.1537e-15)from
 </div>
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(gpa_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="a.-2" class="level3">
-<h3 class="anchored" data-anchor-id="a.-2">a.</h3>
+<section id="a.-3" class="level3">
+<h3 class="anchored" data-anchor-id="a.-3">a.</h3>
 <p>Compute the mean and variance of ACT test score and GPA.</p>
 <p><strong>R/</strong><br>
 </p>
@@ -657,10 +660,10 @@ $residual.scale
 <span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame </span></span>
 <span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(age, weight, systolic_BP)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="a.-3" class="level3">
-<h3 class="anchored" data-anchor-id="a.-3">a.</h3>
+<section id="a.-4" class="level3">
+<h3 class="anchored" data-anchor-id="a.-4">a.</h3>
 <p>Write a first-order multiple regression model relating Systolic BP to Age and Weight.</p>
-<p><strong>R/</strong> <span class="math display">\[\widehat{Systolic BP} = \beta_0 + \beta_1 * Age + \beta_2 * Weight\]</span></p>
+<p><strong>R/</strong> <span class="math display">\[Systolic BP = \beta_0 + \beta_1 * Age + \beta_2 * Weight + \epsilon_i\]</span></p>
 </section>
 <section id="b.-4" class="level3">
 <h3 class="anchored" data-anchor-id="b.-4">b.</h3>

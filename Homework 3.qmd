@@ -147,7 +147,9 @@ Assuming a 5% level of significance, and given that the P-value (1.1537e-15)from
 
 Athletes are constantly seeking measures of the degree of their cardiovascular fitness prior to a major race. Athletes want to know when their training is at a level that will produce a peak performance. One such measure of fitness is the time to exhaustion from running on a treadmill at a specified angle and speed. The important question is then “Does this measure of cardiovascular fitness translate into performance in a 10-km running race?” Twenty experienced distance runners who professed to be in top condition were evaluated on the treadmill and then had their times recorded in a 10-km race.
 
-You are provided with the following information $$ \hat{\beta_0} = b_0 = 58.816$$ $$ \hat{\beta_1} = b_1 = -1.867$$ $$ s(b_1) = 0.346$$ $$ MSE = 4.417$$ $$\hat{y}= 58.816 − 1.867x$$ \### a.
+You are provided with the following information $$ \hat{\beta_0} = b_0 = 58.816$$ $$ \hat{\beta_1} = b_1 = -1.867$$ $$ s(b_1) = 0.346$$ $$ MSE = 4.417$$ $$\hat{y}= 58.816 − 1.867x$$ 
+
+### a.
 
 Test the hypothesis that there is a linear relationship between the amount of time needed to run a 10-km race and the time to exhaustion on a treadmill.
 
@@ -373,7 +375,7 @@ data <- data.frame(age, weight, systolic_BP)
 Write a first-order multiple regression model relating Systolic BP to Age and Weight.
 
 **R/**
-$$\widehat{Systolic BP} = \beta_0 + \beta_1 * Age + \beta_2 * Weight$$
+$$Systolic BP = \beta_0 + \beta_1 * Age + \beta_2 * Weight + \epsilon_i$$
 
 ### b.
 
