@@ -409,3 +409,4 @@ If the age of an infant is constant, for each additional kilogram of weight that
 Can the hypothesis of no overall predictive value of the model be rejected at the $\alpha = 0.01$ level?
 
 **R/**\
+Given the p-value(8.696e-13) obtained for the overall predictive value of the model is much lower than the significance level, it is valid to reject the hypothesis that the model has no overall predictive power on the systolic blood preassure of infants.
